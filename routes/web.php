@@ -27,7 +27,6 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => ['auth']], function () {
-    // Route::get('/students', 'StudentController@getAll');
     // Route::get('/student/get/{id}', 'StudentController@getOne');
     //     // create
     // Route::get('/student/create', 'StudentController@createOneForm');
@@ -40,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // CRUD albums
-
+Route::get('/albums', 'AlbumController@getAll');
 
 // Base route
 Route::get('/{all?}', 'NavController@showPage');
