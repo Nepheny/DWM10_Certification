@@ -106,7 +106,13 @@ class AlbumController extends Controller
     // DELETE
     public function deleteOne(Request $request)
     {
-        Album::destroy($request->input('id'));
+        $album = Album::find($request->input('id'));
+        if($album->count >= 0) {
+            $album->count = ($album->count - 1);
+            $album->save();
+        } else {
+            Album::destroy($request->input('id'));
+        }
         return redirect('/albums');
     }
 }

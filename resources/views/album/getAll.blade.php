@@ -10,12 +10,12 @@
                         <form action="/album/update" method="GET">
                             @csrf
                             <input type="hidden" name="id" value="{{ $album->id }}">
-                            <input type="submit" name="update" value="Modifier">
+                            <input class="button-action" type="submit" name="update" value="Modifier">
                         </form>
                         <form action="/album/delete" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $album->id }}">
-                            <input type="submit" name="delete" value="Supprimer">
+                            <input class="button-action" type="submit" name="delete" value="Supprimer">
                         </form>
                     </div>
                     <div class="album-container">
