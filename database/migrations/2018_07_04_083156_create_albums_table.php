@@ -19,6 +19,7 @@ class CreateAlbumsTable extends Migration
             $table->date('release');
             $table->integer('author_id');
             $table->text('cover')->nullable();
+            $table->integer('price');
             $table->integer('count');
             $table->timestamps();
         });
