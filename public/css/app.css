@@ -3,6 +3,7 @@ body {
   color: #333;
   width: 100vw;
   min-height: 100vh;
+  position: relative;
 }
 body header {
   display: -webkit-box;
@@ -46,15 +47,6 @@ body main section {
 }
 body main section form {
   padding-bottom: 20px;
-}
-body main section form .button-action {
-  font-family: 'Raleway', sans-serif;
-  color: #333;
-  font-size: 12px;
-  text-transform: uppercase;
-  width: auto;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  padding: 5px 10px;
 }
 body main section .actions-container {
   display: -webkit-box;
@@ -217,7 +209,7 @@ body main section .form-container form .button input {
   font-size: 12px;
   text-transform: uppercase;
   width: auto;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 5px 10px;
 }
 body footer {
@@ -246,4 +238,42 @@ body h6 {
 body strong {
   font-weight: 700;
   font-size: 18px;
+}
+body .button-action {
+  font-family: 'Raleway', sans-serif;
+  color: #333;
+  font-size: 12px;
+  text-transform: uppercase;
+  width: auto;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 5px 10px;
+}
+body .modal {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+body .modal-container {
+  width: 100%;
+  height: 100%;
+  color: #eee;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+body .hidden {
+  display: none;
 }

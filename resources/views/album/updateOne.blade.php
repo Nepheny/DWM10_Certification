@@ -30,8 +30,9 @@
                 @foreach ($authors as $author)
                 @if ($author->id == $album->author_id)
                     <option selected value="{{ $author->id }}">{{ $author->name }}</option>
-                @endif
+                @else
                     <option value="{{ $author->id }}">{{ $author->name }}</option>
+                @endif
                 @endforeach
                 </select>
             </div>

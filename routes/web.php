@@ -40,6 +40,7 @@ Route::post('/album/insert', 'AlbumController@insertOneAction');
 Route::get('/album/update', 'AlbumController@updateOneForm');
 Route::post('/album/update', 'AlbumController@updateOneAction');
 
+Route::post('/album/buy', 'AlbumController@buyOne');
 Route::post('/album/delete', 'AlbumController@deleteOne');
 
 // Base route

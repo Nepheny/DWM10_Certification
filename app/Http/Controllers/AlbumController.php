@@ -19,6 +19,12 @@ class AlbumController extends Controller
         return view('album.getAll', ['albums' => $albums]);
     }
 
+    public function getOne(Request $request, $id)
+    {
+        $album = Album::find($id)->load('author', 'genres');
+        return $album;
+    }
+
     // CREATE
     public function insertOneForm()
     {
@@ -104,7 +110,7 @@ class AlbumController extends Controller
     }
 
     // DELETE
-    public function deleteOne(Request $request)
+    public function buyOne(Request $request)
     {
         $album = Album::find($request->input('id'));
         if($album->count >= 0) {
@@ -113,6 +119,12 @@ class AlbumController extends Controller
         } else {
             Album::destroy($request->input('id'));
         }
+        return redirect('/albums');
+    }
+
+    public function deleteOne(Request $request)
+    {
+        Album::destroy($request->input('id'));
         return redirect('/albums');
     }
 }
