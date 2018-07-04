@@ -11,31 +11,22 @@
 |
 */
 
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/{all?}', 'NavController@showPage');
-
-// /*Route::get('/', function () {
-//     return view('welcome');
-// });*/
-
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
 // Registration Routes...
 $this->get('register', 'HomeController@register')->name('register');
 $this->post('register', 'HomeController@register');
+
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
 Route::group(['middleware' => ['auth']], function () {
-    // // CRUD students
-    //     // read
     // Route::get('/students', 'StudentController@getAll');
     // Route::get('/student/get/{id}', 'StudentController@getOne');
     //     // create
@@ -46,8 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::post('/student/update', 'StudentController@updateOneAction');
     //     // delete
     // Route::post('/student/delete', 'StudentController@deleteOne');
-    // // Base route
-    // Route::get('/{all?}', 'NavController@showPage');
 });
 
+// CRUD albums
+
+
+// Base route
 Route::get('/{all?}', 'NavController@showPage');
