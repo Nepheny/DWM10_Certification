@@ -5,6 +5,7 @@
             <li><a href="{{ route('login') }}">Se connecter</a></li>
             <li><a href="{{ route('register') }}">S'enregistrer</a></li>
             <li><a href="/albums">Liste des albums</a></li>
+            <li><a href="/album/insert">Ajouter un album</a></li>
         @else
             <li>
                 <div><a href="#">{{ Auth::user()->name }}</a></div>

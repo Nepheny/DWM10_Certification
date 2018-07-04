@@ -10,6 +10,12 @@
                         <div>
                             <p><span>Sortie : </span>{{ $album->release }}</p>
                             <p><span>Auteur : </span>{{ $album->author->name }}</p>
+                            <p>
+                                <span>Genres : </span>
+                                @foreach ($album->genres as $genre)
+                                    {{ $genre->name }}
+                                @endforeach
+                            </p>
                             <p><span>Prix : </span>{{ $album->price }}€</p>
                             <p><span>Reste : </span>{{ $album->count }}</p>
                         </div>

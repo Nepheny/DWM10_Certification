@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use \Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Album as Album;
 use App\Author as Author;
 use App\Genre as Genre;
+use Validator;
 
 class AlbumController extends Controller
 {
@@ -14,5 +17,44 @@ class AlbumController extends Controller
     {
         $albums = Album::all()->load('author', 'genres');
         return view('album.getAll', ['albums' => $albums]);
+    }
+
+    // CREATE
+    public function insertOneForm()
+    {
+        $authors = Author::all();
+        $genres = Genre::all();
+        return view('album.insertOne', ['authors' => $authors, 'genres' => $genres]);
+    }
+
+    public function insertOneAction(Request $request)
+    {
+        $rules = array(
+            'title'     => 'required|string',
+            'cover'     => 'image',
+            'price'     => 'required|integer',
+            'count'     => 'required|integer'
+        );
+        $validator = Validator::make($request->input(), $rules);
+        if($validator->fails()) {
+            $messages = $validator->messages();
+            return Redirect::to('album.insertOne')->withErrors($validator);
+        }
+
+        if($request->input('cover')) {
+            $path = $request->file('img')->storeAs('public/img', $request->file('img')->getClientOriginalName());
+            $album->cover = $path;
+        }
+        $album = new Album();
+        $album->title = $request->input('title');
+        $album->release = $request->input('release');
+        $album->author_id = $request->input('author');
+        $album->price = $request->input('price');
+        $album->count = $request->input('count');
+        $album->save();
+        foreach($request->input('genres') as $genre) {
+            $album->genres()->attach($genre);
+        }
+        return redirect('/albums');
     }
 }

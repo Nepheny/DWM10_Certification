@@ -41,5 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
 // CRUD albums
 Route::get('/albums', 'AlbumController@getAll');
 
+Route::get('/album/insert', 'AlbumController@insertOneForm');
+Route::post('/album/insert', 'AlbumController@insertOneAction');
+
 // Base route
 Route::get('/{all?}', 'NavController@showPage');
