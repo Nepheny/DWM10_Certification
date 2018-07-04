@@ -102,4 +102,11 @@ class AlbumController extends Controller
         }
         return redirect('/albums');
     }
+
+    // DELETE
+    public function deleteOne(Request $request)
+    {
+        Album::destroy($request->input('id'));
+        return redirect('/albums');
+    }
 }

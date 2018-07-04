@@ -6,11 +6,18 @@
             @foreach ($albums as $album)
                 <li>
                     <h2>{{ $album->title }}</h2>
-                    <form action="/album/update" method="GET">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $album->id }}">
-                        <input type="submit" name="update" value="Modifier">
-                    </form>
+                    <div class="actions-container">
+                        <form action="/album/update" method="GET">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $album->id }}">
+                            <input type="submit" name="update" value="Modifier">
+                        </form>
+                        <form action="/album/delete" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $album->id }}">
+                            <input type="submit" name="delete" value="Supprimer">
+                        </form>
+                    </div>
                     <div class="album-container">
                         <div>
                             <p><span>Sortie : </span>{{ $album->release }}</p>
