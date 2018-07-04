@@ -44,6 +44,9 @@ body main section {
   min-height: 80vh;
   background-color: lightgoldenrodyellow;
 }
+body main section form {
+  padding-bottom: 20px;
+}
 body main section .albums-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -221,4 +224,8 @@ body h5,
 body h6 {
   padding: 20px 0;
   text-transform: uppercase;
+}
+body strong {
+  font-weight: 700;
+  font-size: 18px;
 }

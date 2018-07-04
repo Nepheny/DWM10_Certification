@@ -44,5 +44,8 @@ Route::get('/albums', 'AlbumController@getAll');
 Route::get('/album/insert', 'AlbumController@insertOneForm');
 Route::post('/album/insert', 'AlbumController@insertOneAction');
 
+Route::get('/album/update', 'AlbumController@updateOneForm');
+Route::post('/album/update', 'AlbumController@updateOneAction');
+
 // Base route
 Route::get('/{all?}', 'NavController@showPage');

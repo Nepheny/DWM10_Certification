@@ -38,7 +38,7 @@ class AlbumController extends Controller
         $validator = Validator::make($request->input(), $rules);
         if($validator->fails()) {
             $messages = $validator->messages();
-            return Redirect::to('album.insertOne')->withErrors($validator);
+            return Redirect::back()->withErrors($validator);
         }
 
         if($request->input('cover')) {
@@ -52,8 +52,53 @@ class AlbumController extends Controller
         $album->price = $request->input('price');
         $album->count = $request->input('count');
         $album->save();
-        foreach($request->input('genres') as $genre) {
-            $album->genres()->attach($genre);
+        if($request->input('genres')) {
+            foreach($request->input('genres') as $genre) {
+                $album->genres()->attach($genre);
+            }
+        }
+        return redirect('/albums');
+    }
+
+    // UPDATE
+    public function UpdateOneForm(Request $request)
+    {
+        $album = Album::find($request->input('id'))->load('author', 'genres');
+        $authors = Author::all();
+        $genres = Genre::all();
+        return view('album.updateOne', ['album' => $album, 'authors' => $authors, 'genres' => $genres]);
+    }
+
+    public function UpdateOneAction(Request $request)
+    {
+        $rules = array(
+            'title'     => 'required|string',
+            'cover'     => 'image',
+            'price'     => 'required|integer',
+            'count'     => 'required|integer'
+        );
+        $validator = Validator::make($request->input(), $rules);
+        if($validator->fails()) {
+            $messages = $validator->messages();
+            return Redirect::back()->withErrors($validator);
+        }
+
+        if($request->input('cover')) {
+            $path = $request->file('img')->storeAs('public/img', $request->file('img')->getClientOriginalName());
+            $album->cover = $path;
+        }
+        $album = Album::find($request->input('id'));
+        $album->title = $request->input('title');
+        $album->release = $request->input('release');
+        $album->author_id = $request->input('author');
+        $album->price = $request->input('price');
+        $album->count = $request->input('count');
+        $album->save();
+        if($request->input('genres')) {
+            $album->genres()->detach();
+            foreach($request->input('genres') as $genre) {
+                $album->genres()->attach($genre);
+            }
         }
         return redirect('/albums');
     }
