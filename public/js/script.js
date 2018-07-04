@@ -1,6 +1,11 @@
-const modal = document.querySelector('.modal');
-
 document.querySelector('body').addEventListener('click', function(el) {
+    const modal = document.querySelector('.modal');
+    if(el.target.dataset.action === "modal") {
+        modal.addEventListener('click', function(el) {
+            modal.classList.add('hidden');
+        });
+    }
+
     if(el.target.dataset.action === "infos") {
         const id = el.target.dataset.id;
         let xhttp;
@@ -50,8 +55,4 @@ document.querySelector('body').addEventListener('click', function(el) {
         xhttp.open("GET", "http://192.168.33.10/album/get/" + id, true);
         xhttp.send();
     }
-});
-
-modal.addEventListener('click', function(el) {
-    modal.classList.add('hidden');
 });
