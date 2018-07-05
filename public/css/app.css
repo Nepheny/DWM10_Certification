@@ -281,7 +281,7 @@ body main .content .albums-container ul li .album-container div p {
 body main .content .albums-container ul li .album-container div p span {
   font-weight: 500;
 }
-body main .content .albums-container ul li .album-container .cover-container {
+body main .content .albums-container ul li .album-container .cover-container img {
   max-width: 150px;
 }
 body main .content .form-container {
@@ -432,8 +432,8 @@ body .modal {
   background-color: rgba(0, 0, 0, 0.9);
 }
 body .modal-container {
-  width: 80%;
-  height: 50%;
+  width: 50%;
+  height: 60%;
   color: #eee;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -474,6 +474,9 @@ body .modal-container ul li {
   padding: 20px 0;
   font-weight: 100;
   font-size: 18px;
+}
+body .modal-container ul div img {
+  max-width: 300px;
 }
 body .hidden {
   display: none;

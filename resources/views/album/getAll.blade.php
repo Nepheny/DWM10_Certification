@@ -33,7 +33,7 @@
                         </div>
                         <div class="cover-container">
                             @if ($album->cover)
-                                <p>{{ $album->cover }}</p>
+                                <img src="{{ asset('/storage/' . $album->cover ) }}">
                             @endif
                         </div>
                     </div>

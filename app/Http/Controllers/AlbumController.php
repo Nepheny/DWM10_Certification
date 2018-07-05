@@ -37,7 +37,6 @@ class AlbumController extends Controller
     {
         $rules = array(
             'title'     => 'required|string',
-            'cover'     => 'image',
             'price'     => 'required|integer',
             'count'     => 'required|integer'
         );
@@ -47,11 +46,11 @@ class AlbumController extends Controller
             return Redirect::back()->withErrors($validator);
         }
 
-        if($request->input('cover')) {
-            $path = $request->file('img')->storeAs('public/img', $request->file('img')->getClientOriginalName());
+        $album = new Album();
+        if($request->file('cover')) {
+            $path = $request->file('cover')->storeAs('img', $request->file('cover')->getClientOriginalName());
             $album->cover = $path;
         }
-        $album = new Album();
         $album->title = $request->input('title');
         $album->release = $request->input('release');
         $album->author_id = $request->input('author');

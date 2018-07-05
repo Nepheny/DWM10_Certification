@@ -191,7 +191,9 @@ body {
                                 }
                             }
                             .cover-container {
-                                max-width: 150px;
+                                img {
+                                    max-width: 150px;
+                                }
                             }
                         }
                     }
@@ -304,8 +306,8 @@ body {
         background-color: rgba(0,0,0,0.90);
     }
     .modal-container {
-        width: 80%;
-        height: 50%;
+        width: 50%;
+        height: 60%;
         color: #eee;
         display: flex;
         flex-direction: column;
@@ -326,6 +328,11 @@ body {
                 padding: 20px 0;
                 font-weight: 100;
                 font-size: 18px;
+            }
+            div {
+                img {
+                    max-width: 300px;
+                }
             }
         }
     }

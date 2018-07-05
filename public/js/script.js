@@ -20,13 +20,13 @@ document.querySelector('body').addEventListener('click', function(el) {
                 const author = document.createElement('li');
                 const price = document.createElement('li');
                 const count = document.createElement('li');
-                //const coverContainer = document.createElement('div');
-                //const cover = document.createElement('img');
+                const coverContainer = document.createElement('div');
+                const cover = document.createElement('img');
 
                 title.innerHTML = album.title;
                 release.innerHTML = "Sortie : " + album.release;
                 author.innerHTML = "Auteur : " + album.author.name;
-                //cover.src = "/storage/img/" + album.cover;
+                cover.src = "/storage/" + album.cover;
                 price.innerHTML = "Prix : " + album.price;
                 count.innerHTML = "Articles restants : " + album.count;
                 list.appendChild(release);
@@ -41,8 +41,8 @@ document.querySelector('body').addEventListener('click', function(el) {
 
                 list.appendChild(price);
                 list.appendChild(count);
-                //coverContainer.appendChild(cover);
-                //list.appendChild(coverContainer);
+                coverContainer.appendChild(cover);
+                list.appendChild(coverContainer);
                 modalContainer.appendChild(title);
                 modalContainer.appendChild(list);
 
