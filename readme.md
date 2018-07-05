@@ -1,60 +1,41 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# CERTIFICATION
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Projet
+Le projet est un magasin d'albums.
+La possibilité de s'enregistrer est désactivée par une redirection et le seul utilisateur est considéré comme l'administrateur du site. Il a donc accès à toutes les routes. Le visiteur et potientiel acheteur n'a accès qu'aux routes permettant de voir les albums, leurs informations plus précises et à l'achat. Certains boutons présents dans la liste des albums lui sont cachés.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Déroulé
+J'ai commencé par définir sur une feuille les informations dont j'aurai besoin pour faire une application qui tienne la route au niveau logique si je me mets dans la situation d'un site de vente d'albums de musique.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+L'installation de Laravel dans la Vagrant n'a pas posé de soucis particulier.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+J'ai voulu tenter d'utiliser le 'Auth' de Laravel. Cela m'a posé beaucoup de soucis car j'ai utilisé une ancienne syntaxe visiblement concernant le **Route::group();** et je n'avais pas controllé cette syntaxe avant d'avancer dans les modifications que je souhaitais faire au système d'authentification. Après avoir restauré le dernier commit, j'ai relancé la commande **php artisan make:auth** pour repartir de zéro avant de voir mon erreur. J'y ai perdu une bonne heure.
 
-## Learning Laravel
+L'installation de ce qui m'a permit de faire fonctionner le LESS ne m'a posé aucun problème.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+J'ai ajouté un NavController qui m'assure que mes routes sont bien gérées.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Une fois le système d'authentification fonctionnel, j'ai créé les tables nécessaires au projet : *albums*, *authors*, *genres* et la table intermédiaire *album_genre*. La table *authors* est reliée à *albums* par une colonne *auhtor_id*. Cela me permettait de gérer des relations *OneToMany* et *ManyToMany*. J'ai laissé en commentaire la gestion des couvertures d'album dans un premier temps car je ne voulais pas perdre de temps.
 
-## Laravel Sponsors
+J'ai ensuite créé mes seeds pour ces tables.
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+Lorsque j'ai voulu migrer mes tables, je suis tombée sur une erreur m'indiquant que je n'avais pas modifé les informations nécessaires à la connexion de Laravel à la base de données dans le fichier *.env*. J'ai corrigé ce problème.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
+J'ai ajouté, toujours avec les commandes de Laravel, les modèles qui me serviront à gérer les données de mes tables et leurs relations. Je me suis rendue compte que j'avais oublié la colonne *price* dans ma table *albums*, j'ai donc *fresh* les migrations et ajouté cette donnée dans ma seed correspondante.
 
-## Contributing
+Le CRUD n'a pas posé de soucis particulier, du moins sans la gestion des couvertures d'albums à ce moment-là. J'ai néanmoins eu un soucis avec les validateurs que j'ai voulu ajouter dans les fonctionnalités *create* et *update*. J'ai éliminé certains validateurs qui posaient soucis à ce moment-là, en mettant en tâche supplémentaire si j'ai du temps pour peaufiner. Le **Redirect::to()** ne fonctionnait pas car je n'arrivais pas à récupérer les données nécessaires à l'affichage du formulaire. J'ai donc opté pour un **Redirect::back()** malgré le fait que l'utilisateur doit recommencer à remplir le formulaire. J'ai ajouté l'affichage des erreurs par les messages du validateur.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+J'ai perdu énormément de temps pour trouver un affichage du formulaire qui me convenait. Ma structure HTML n'était pas assez optimale pour obtenir le rendu souhaité avec le CSS. J'ai fini par remettre ce point à plus tard, après un rendu que j'estime correct, si j'ai du temps.
 
-## Security Vulnerabilities
+J'ai géré un peu différemment la fonctionnalité de suppression : je voulais utiliser le compteur d'articles que j'avais prévu dans ma table *albums*. Il y a donc deux formes de suppression : lorsque l'on appuie sur le bouton *acheter*, le compteur descend de 1, une fois arrivé à 0, l'objet est supprimé. La deuxième requête est réervée à l'administrateur du site : il peut supprimer un objet indépendament du compteur.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Concernant les fonctionnalités JS, j'ai voulu ajouter une requête ajax. Le principe est simple : lorsque l'utilisateur appuie sur le bouton 'infos' d'un album, cela affiche une modale avec les données reçues en requête ajax. J'aurais souhaité séparer un peu plus la requête de la création d'éléments HTML, mais je craignais de manquer de temps.
 
-## License
+Je me suis penchée ensuite sur la gestion des routes et le système utilisateur / administrateur que je souhaitais ajouter. Au départ, j'avais prévu d'ajouter un middleware qui aurait géré les droits avec un fichier de config *acl* que j'aurais créé, mais comme je souhaitais aussi supprimer la possibilité de se connecter, il m'a paru plus logique de gérer les routes avec une simple gestion : *est-ce que l'utilisateur est connecté ?* J'ai donc simplement déplacé mes routes *utilisateur connecté* dans le groupe passant par le middleware de 'auth'.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Informations
+- Informations de connexion utilisateur :
+  - email : **morgan@morgan.morgan**
+  - mdp   : **morgan**
