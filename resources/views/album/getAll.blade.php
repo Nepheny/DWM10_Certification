@@ -41,7 +41,7 @@
             @endforeach
         </ul>
     </div>
-    <div class="modal hidden">
+    <div class="modal hidden" data-action="modal">
         <div class="modal-container" data-action="modal"></div>
     </div>
 @endsection
