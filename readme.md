@@ -34,6 +34,11 @@ Concernant les fonctionnalités JS, j'ai voulu ajouter une requête ajax. Le pri
 
 Je me suis penchée ensuite sur la gestion des routes et le système utilisateur / administrateur que je souhaitais ajouter. Au départ, j'avais prévu d'ajouter un middleware qui aurait géré les droits avec un fichier de config *acl* que j'aurais créé, mais comme je souhaitais aussi supprimer la possibilité de se connecter, il m'a paru plus logique de gérer les routes avec une simple gestion : *est-ce que l'utilisateur est connecté ?* J'ai donc simplement déplacé mes routes *utilisateur connecté* dans le groupe passant par le middleware de 'auth'.
 
+Une fois tout cela terminé, j'ai réglé quelques bugs sur le fichier *script.js* pour une meilleure gestion de la modale, et j'ai ajouté la gestion des images avec le **php artisan storage:link**. J'ai ajouté du CSS en rapport avec ce qu'a modifié les images.
+
+J'ai eu des soucis avec un fichier ajouté lorsque j'ai voulu merger la branche *dev* sur la *master*. Mais j'ai finalement pu le faire avec l'aide de Morgan. Il ne restait que 30min, alors j'ai préféré faire un *tag* et arrêter là.
+
+
 
 ## Informations
 - Informations de connexion utilisateur :
