@@ -16,6 +16,11 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
+// Redirection of Registration routes
+Route::match(['get', 'post'], 'register', function(){
+    return redirect('/');
+});
+
 // Registration Routes...
 $this->get('register', 'HomeController@register')->name('register');
 $this->post('register', 'HomeController@register');
@@ -27,21 +32,18 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => ['auth']], function () {
-
+    // Registered only
+    Route::get('/album/insert', 'AlbumController@insertOneForm');
+    Route::post('/album/insert', 'AlbumController@insertOneAction');
+    Route::get('/album/update', 'AlbumController@updateOneForm');
+    Route::post('/album/update', 'AlbumController@updateOneAction');
+    Route::post('/album/delete', 'AlbumController@deleteOne');
 });
 
-// CRUD albums
+// Guests
 Route::get('/albums', 'AlbumController@getAll');
 Route::get('/album/get/{id}', 'AlbumController@getOne');
-
-Route::get('/album/insert', 'AlbumController@insertOneForm');
-Route::post('/album/insert', 'AlbumController@insertOneAction');
-
-Route::get('/album/update', 'AlbumController@updateOneForm');
-Route::post('/album/update', 'AlbumController@updateOneAction');
-
 Route::post('/album/buy', 'AlbumController@buyOne');
-Route::post('/album/delete', 'AlbumController@deleteOne');
 
 // Base route
 Route::get('/{all?}', 'NavController@showPage');

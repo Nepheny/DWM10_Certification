@@ -13,7 +13,8 @@
         @include('parts/header')
     </header>
     <main>
-        <section>
+        @include('parts/subHeader')
+        <section class="content">
             @yield('content')
         </section>
     </main>

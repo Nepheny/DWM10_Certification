@@ -1,9 +1,7 @@
 document.querySelector('body').addEventListener('click', function(el) {
     const modal = document.querySelector('.modal');
     if(el.target.dataset.action === "modal") {
-        modal.addEventListener('click', function(el) {
-            modal.classList.add('hidden');
-        });
+        modal.classList.add('hidden');
     }
 
     if(el.target.dataset.action === "infos") {
@@ -20,7 +18,6 @@ document.querySelector('body').addEventListener('click', function(el) {
                 const list = document.createElement('ul');
                 const release = document.createElement('li');
                 const author = document.createElement('li');
-                const genreList = document.createElement('ul');
                 const price = document.createElement('li');
                 const count = document.createElement('li');
                 //const coverContainer = document.createElement('div');
@@ -32,27 +29,27 @@ document.querySelector('body').addEventListener('click', function(el) {
                 //cover.src = "/storage/img/" + album.cover;
                 price.innerHTML = "Prix : " + album.price;
                 count.innerHTML = "Articles restants : " + album.count;
-                genreList.innerHTML = "Genres : ";
-                for (let i = 0; i < album.genres.length; i++) {
-                    const genre = document.createElement('li');
-                    genre.innerHTML = album.genres[i].name;
-                    genreList.appendChild(genre);
-                }
-
-                //coverContainer.appendChild(cover);
                 list.appendChild(release);
                 list.appendChild(author);
-                list.appendChild(genreList);
-                //list.appendChild(coverContainer);
+
+                const genre = document.createElement('li');
+                genre.innerHTML = "Genre : ";
+                for (let i = 0; i < album.genres.length; i++) {
+                    genre.innerHTML += " " + album.genres[i].name;
+                    list.appendChild(genre);
+                }
+
                 list.appendChild(price);
                 list.appendChild(count);
+                //coverContainer.appendChild(cover);
+                //list.appendChild(coverContainer);
                 modalContainer.appendChild(title);
                 modalContainer.appendChild(list);
 
                 modal.classList.remove('hidden');
             }
         }
-        xhttp.open("GET", "http://192.168.33.10/album/get/" + id, true);
+        xhttp.open("GET", "/album/get/" + id, true);
         xhttp.send();
     }
 });

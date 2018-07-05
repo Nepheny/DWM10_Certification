@@ -1,2 +1,4 @@
-<h2>footer</h2>
-<p>copyright et retour en haut</p>
+<ul>
+    <li><a href="/">Accueil</a></li>
+    <li>© Crystal Bouchez</li>
+</ul>

@@ -1,3 +1,5 @@
+@smallSize : 720px;
+
 body {
     font-family: 'Raleway', sans-serif;
     color: #333;
@@ -5,25 +7,116 @@ body {
     min-height: 100vh;
     position: relative;
     header {
+        position: fixed;
+        top: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 10vh;
-        background-color: lightcoral;
+        box-shadow: 0px 2px 5px 0 rgba(0,0,0,0.5);
+        @media (max-width: @smallSize) {
+            height: 20vh;
+            ul {
+                flex-direction: column;
+                li {
+                    width: 100%;
+                    a {
+                        padding: 10px 0;
+                    }
+                }
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            ul {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(114, 104, 103, 0.95);
+                li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    color: #eee;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 100%;
+                        color: #eee;
+                        padding: 0 20px;
+                        cursor: pointer;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        letter-spacing: 1px;
+                        transition: all 0.5s ease;
+                        &:hover {
+                            background-color: rgba(92, 143, 18, 0.95);
+                            transition: all 0.5s ease;
+                        }
+                    }
+                }
+            }
+        }
     }
     main {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
         min-height: 80vh;
-        section {
+        .sub-header {
+            height: 80vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: #eee;
+            text-shadow: 2px 2px #333;
+            background-image: url('/img/bg.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            h1 {
+                font-size: 32px;
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            p {
+                text-transform: uppercase;
+            }
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             width: 100%;
             min-height: 80vh;
-            background-color: lightgoldenrodyellow;
+            h1 {
+                font-size: 32px;
+                color: rgb(92, 143, 18);
+            }
+            p {
+                padding: 20px;
+                text-align: justify;
+            }
             form {
                 padding-bottom: 20px;
             }
@@ -31,6 +124,18 @@ body {
                 display: flex;
                 justify-content: space-evenly;
                 width: 100%;
+                .button-action {
+                    font-family: 'Raleway', sans-serif;
+                    color: #eee;
+                    font-size: 10px;
+                    text-transform: uppercase;
+                    width: auto;
+                    height: 30px;
+                    border: 1px solid rgba(0,0,0,0.25);
+                    padding: 5px 10px;
+                    margin: 0 5px;
+                    background-color: rgba(114, 104, 103, 0.95);
+                }
             }
             .albums-container {
                 display: flex;
@@ -39,7 +144,6 @@ body {
                 align-items: center;
                 width: 100%;
                 height: 100%;
-                background-color: lightblue;
                 ul {
                     display: flex;
                     flex-wrap: wrap;
@@ -51,7 +155,13 @@ body {
                         margin: 20px;
                         padding: 0 20px;
                         width: 300px;
-                        background-color: lightcyan;
+                        background-color: rgba(92, 143, 18, 0.01);
+                        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+                                    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+                                    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+                        &:hover {
+                            background-color: rgba(92, 143, 18, 0.05);
+                        }
                         h2 {
                             text-align: center;
                             font-weight: 500;
@@ -63,7 +173,7 @@ body {
                             width: 100%;
                             div {
                                 p {
-                                    padding-bottom: 20px;
+                                    padding-bottom: 10px;
                                     span {
                                         font-weight: 500;
                                     }
@@ -82,7 +192,6 @@ body {
                 align-items: center;
                 width: 100%;
                 height: 100%;
-                background-color: lightblue;
                 form {
                     display: flex;
                     flex-direction: column;
@@ -147,7 +256,39 @@ body {
         align-items: center;
         width: 100%;
         height: 10vh;
-        background-color: lightgreen;
+        color: #eee;
+        font-size: 12px;
+        background-color: rgba(114, 104, 103, 0.95);
+        ul {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 100%;
+            li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0 20px;
+                    color: #eee;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                    transition: all 0.5s ease;
+                    &:hover {
+                        background-color: rgba(92, 143, 18, 0.95);
+                        transition: all 0.5s ease;
+                    }
+                }
+            }
+        }
     }
     h1, h2, h3, h4, h5, h6 {
         padding: 20px 0;
@@ -157,31 +298,42 @@ body {
         font-weight: 700;
         font-size: 18px;
     }
-    .button-action {
-        font-family: 'Raleway', sans-serif;
-        color: #333;
-        font-size: 12px;
-        text-transform: uppercase;
-        width: auto;
-        height: 30px;
-        border: 1px solid rgba(0,0,0,0.25);
-        padding: 5px 10px;
-    }
     .modal {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 10vh;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(0,0,0,0.75);
+        background-color: rgba(0,0,0,0.90);
     }
     .modal-container {
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 50%;
         color: #eee;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: rgb(92, 143, 18);
+        h2 {
+            font-size: 32px;
+            text-align: center;
+        }
+        ul {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            li {
+                padding: 20px 0;
+                ul {
+                    padding: 10px;
+                }
+            }
+        }
     }
     .hidden {
         display: none;
