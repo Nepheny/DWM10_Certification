@@ -112,7 +112,7 @@ class AlbumController extends Controller
     public function buyOne(Request $request)
     {
         $album = Album::find($request->input('id'));
-        if($album->count >= 0) {
+        if($album->count > 1) {
             $album->count = ($album->count - 1);
             $album->save();
         } else {
